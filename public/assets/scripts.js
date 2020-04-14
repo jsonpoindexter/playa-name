@@ -30,11 +30,11 @@ const generateName = async () => {
     inputErrEl.style.display = 'none';
     inputEl.classList.remove('error-border');
 
-    textEl.innerHTML = '<h1 class="generating">Loading<span>.</span><span>.</span><span>.</span></h1>';
+    textEl.innerHTML = '<h1 class="generating">Generating<span>.</span><span>.</span><span>.</span></h1>';
     try {
         const docRef = await submissionsRef.add({text: inputEl.value});
         docRef.onSnapshot((doc) => {
-            generatedName = `${baseName}${doc.data().id}`
+            generatedName = `${baseName}${doc.data().id}`;
             if (doc.data() && doc.data().id) textEl.innerHTML = `Congrats! Your new playa name is: <h1><b>${generatedName}</b></h1>`;
         });
     } catch(error) {
