@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>Playa Name Generator</title>
+        <meta name="description" content="Playa Name Generator">
+        <meta name="author" content="Jason Poindexter">
+        <link href="assets/styles.css" rel="stylesheet">
+    </head>
+    <body>
+        <header>
+            <h1>Playa Name Generator</h1>
+            <h3>Generate a YOUnique playa name simply by putting in descriptive words below and hitting generate!</h3>
+        </header>
+        <div id="form">
+            <label for="desc"></label>
+            <input type="text" id="desc" name="desc" maxlength="50">
+        </div>
+        <p id="input-error" class="error-text">Please enter some descriptive words!</p>
+        <button onclick="generateName()">Generate</button>
+        <h3 id="name"></h3>
+        <img src="assets/phoenix-main-sprite.png" />
+        <script src="https://www.gstatic.com/firebasejs/7.14.0/firebase-app.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/7.14.0/firebase-firestore.js"></script>
+        <script src="assets/firebase-init.js"></script>
+        <script src="assets/scripts.js"></script>
+    </body>
+</html>
+
