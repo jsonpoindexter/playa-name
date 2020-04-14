@@ -17,6 +17,7 @@ submissionsRef.onSnapshot((snapshot) => {
 });
 
 const generateName = async () => {
+    if(generatedName) return;
     const textEl = document.getElementById('name');
     const inputEl = document.getElementById('desc');
     const inputErrEl = document.getElementById('input-error');
