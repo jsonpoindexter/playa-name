@@ -89,7 +89,7 @@ img {
 .submission {
     cursor: pointer;
     font-size: large;
-    margin: 0.5rem 1rem;
+    padding: 0.5rem 1rem;
     filter: blur(3px);
     display: inline-block;
     user-select: none;
