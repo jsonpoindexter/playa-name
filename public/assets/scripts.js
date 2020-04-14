@@ -2,7 +2,12 @@ const db = firebase.firestore();
 const submissionsRef = db.collection('submissions');
 const submissionsEl = document.getElementById('submissions');
 const baseName = 'SpArkl3P0ny';
-let generatedName = '';
+const textEl = document.getElementById('name');
+const setGeneratedNameEl = (name) => {
+    textEl.innerHTML = `Congrats! Your new playa name is: <h1><b>${name}</b></h1>`
+};
+let generatedName = window.localStorage.getItem('generatedName');
+if(generatedName) setGeneratedNameEl(generatedName);
 submissionsRef.onSnapshot((snapshot) => {
     // Only show all submissions if they have generated a name
     if(!generatedName) return;
@@ -18,7 +23,6 @@ submissionsRef.onSnapshot((snapshot) => {
 
 const generateName = async () => {
     if(generatedName) return;
-    const textEl = document.getElementById('name');
     const inputEl = document.getElementById('desc');
     const inputErrEl = document.getElementById('input-error');
     // Handle error messages if no desc input
@@ -36,7 +40,8 @@ const generateName = async () => {
         const docRef = await submissionsRef.add({text: inputEl.value});
         docRef.onSnapshot((doc) => {
             generatedName = `${baseName}${doc.data().id}`;
-            if (doc.data() && doc.data().id) textEl.innerHTML = `Congrats! Your new playa name is: <h1><b>${generatedName}</b></h1>`;
+            window.localStorage.setItem('generatedName', generatedName);
+            if (doc.data() && doc.data().id) setGeneratedNameEl(generatedName);
         });
     } catch(error) {
         // TODO: show error to user if this fails
