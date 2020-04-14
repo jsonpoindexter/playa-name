@@ -12,6 +12,7 @@
             <h1>Playa Name Generator</h1>
             <h3>Generate a YOUnique playa name simply by putting in descriptive words below and hitting generate!</h3>
         </header>
+        <img src="assets/phoenix-main-sprite.png" />
         <div id="form">
             <label for="desc"></label>
             <input type="text" id="desc" name="desc" maxlength="50">
@@ -19,7 +20,7 @@
         <p id="input-error" class="error-text">Please enter some descriptive words!</p>
         <button onclick="generateName()">Generate</button>
         <h3 id="name"></h3>
-        <img src="assets/phoenix-main-sprite.png" />
+        <div id="submissions"></div>
         <script src="https://www.gstatic.com/firebasejs/7.14.0/firebase-app.js"></script>
         <script src="https://www.gstatic.com/firebasejs/7.14.0/firebase-firestore.js"></script>
         <script src="assets/firebase-init.js"></script>

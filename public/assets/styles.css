@@ -7,6 +7,9 @@ body {
     background: #1B3041;
     color: #ffffff;
 }
+header h1 {
+    font-size: 4em;
+}
 #form {
     display: flex;
     flex-direction: row;
@@ -81,3 +84,18 @@ img {
 .loading span:nth-child(3) {
     animation-delay: .4s;
 }
+#submissions {
+    background: #1B3041C8;
+
+}
+.submission {
+    font-size: large;
+    margin: 0.5rem 1rem;
+    filter: blur(0.2rem);
+    display: inline-block;
+}
+
+.submission:hover {
+    filter: unset;
+}
+
