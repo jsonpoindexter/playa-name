@@ -6,6 +6,7 @@ body {
     justify-content: center;
     background: #1B3041;
     color: #ffffff;
+    -webkit-user-select: none;
 }
 header h1 {
     font-size: 4em;
@@ -92,7 +93,7 @@ img {
     padding: 0.5rem 1rem;
     filter: blur(3px);
     display: inline-block;
-    user-select: none;
+    -webkit-tap-highlight-color: transparent
 }
 .submission:hover {
     filter: unset;

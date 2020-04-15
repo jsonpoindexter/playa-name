@@ -12,11 +12,12 @@ submissionsRef.onSnapshot((snapshot) => {
     // Only show all submissions if they have generated a name
     if(!generatedName) return;
     // Remove all children
-    submissionsEl.innerHTML = ''
+    submissionsEl.innerHTML = '';
     snapshot.docs.forEach(submission => {
         let submissionEl = document.createElement('span');
         submissionEl.classList.add('submission');
         submissionEl.innerText = `${baseName}${submission.data().id} - ${submission.data().text}`;
+        submissionEl.setAttribute('role', 'textbox');
         submissionsEl.appendChild(submissionEl);
     })
 });
