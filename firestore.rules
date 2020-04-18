@@ -11,7 +11,9 @@ service cloud.firestore {
       	if (
           incomingData().keys().hasOnly(['text']) &&
           incomingData().text.size() > 0 &&
-          incomingData().text.size() <= 50
+          incomingData().text.size() <= 50 &&
+          // Deny create if text contains URL or IP Address
+          !incomingData().text.matches("[-a-zA-Z0-9@:%._\\+~#=]{1,256}\\.[a-zA-Z0-9()]{1,6}\\b([-a-zA-Z0-9()@:%_\\+.~#?&//=]*)")
         )
       }
   }
