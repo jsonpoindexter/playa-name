@@ -20,6 +20,7 @@ const getFiles = async (dir, extensions) => {
 }
 
 (async () => {
+    console.log('---------- minify start ----------')
     const srcPath = `${process.cwd()}/public`;
     const destPath = `${process.cwd()}/dist`;
     // Copy all files to move any files that will not be minified
@@ -28,10 +29,12 @@ const getFiles = async (dir, extensions) => {
         const paths = await getFiles(srcPath, extensions);
         const ignore = await Promise.all(paths.map(async (path) => {
             try {
+                console.log(`minify ${path}`)
                 const minified = await minify(path);
                 await fs.writeFileSync(path.replace(srcPath, destPath), minified);
             } catch(err) { console.log(err) }
         }))
+        console.log('---------- minify complete ----------')
     })
 
 })();
