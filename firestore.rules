@@ -9,7 +9,7 @@ service cloud.firestore {
       // Allow CREATE if doc contains 'text' key and has a value
       allow create:
       	if (
-          incomingData().keys().hasOnly(['text']) &&
+          incomingData().keys().hasOnly(['text', 'userId']) &&
           incomingData().text.size() > 0 &&
           incomingData().text.size() <= 50 &&
           // Deny create if text contains URL or IP Address

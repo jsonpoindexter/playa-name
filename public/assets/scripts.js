@@ -3,6 +3,16 @@ const submissionsRef = db.collection('submissions');
 const submissionsEl = document.getElementById('submissions');
 const baseName = 'SpArkl3P0ny';
 const textEl = document.getElementById('name');
+let user = null;
+
+// Handle anonymous firebase auth
+firebase.auth().signInAnonymously().catch(function(error) {
+    console.log(error)
+});
+firebase.auth().onAuthStateChanged((authUser) => {
+    console.log(authUser)
+    if (authUser) user= authUser;
+});
 
 const listenForSubmissions = () => {
     submissionsRef.onSnapshot((snapshot) => {
@@ -46,7 +56,7 @@ const generateName = async () => {
 
     textEl.innerHTML = '<h1 class="generating">Generating<span>.</span><span>.</span><span>.</span></h1>';
     try {
-        const docRef = await submissionsRef.add({text: inputEl.value});
+        const docRef = await submissionsRef.add({text: inputEl.value, userId: user.uid});
         docRef.onSnapshot((doc) => {
             if (doc.data() && doc.data().id) {
                 generatedName = `${baseName}${doc.data().id}`;
