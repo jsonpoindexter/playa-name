@@ -10,9 +10,10 @@ firebase.auth().signInAnonymously().catch(function(error) {
     console.log(error)
 });
 firebase.auth().onAuthStateChanged((authUser) => {
-    console.log(authUser)
     if (authUser) user= authUser;
 });
+
+const wait = ms => new Promise((r, j)=>setTimeout(r, ms))
 
 const listenForSubmissions = () => {
     submissionsRef.onSnapshot((snapshot) => {
@@ -55,6 +56,8 @@ const generateName = async () => {
     inputEl.classList.remove('error-border');
 
     textEl.innerHTML = '<h1 class="generating">Generating<span>.</span><span>.</span><span>.</span></h1>';
+    // Wait until we have an Anonymous user created
+    while(!user) await wait(500)
     try {
         const docRef = await submissionsRef.add({text: inputEl.value, userId: user.uid});
         docRef.onSnapshot((doc) => {
