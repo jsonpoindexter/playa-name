@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "deploy": "node util/minify.js && firebase deploy"
+    "deploy": "node util/minify.js && firebase deploy",
+    "watch": "live-server public"
   },
   "repository": {
     "type": "git",
