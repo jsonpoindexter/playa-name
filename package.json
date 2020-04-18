@@ -1,0 +1,24 @@
+{
+  "name": "playaname",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "deploy": "node util/minify.js && firebase deploy"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jsonpoindexter/playa-name.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jsonpoindexter/playa-name/issues"
+  },
+  "homepage": "https://github.com/jsonpoindexter/playa-name#readme",
+  "dependencies": {
+    "minify": "^5.1.1",
+    "ncp": "^2.0.0"
+  }
+}
