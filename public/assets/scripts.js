@@ -3,26 +3,32 @@ const submissionsRef = db.collection('submissions');
 const submissionsEl = document.getElementById('submissions');
 const baseName = 'SpArkl3P0ny';
 const textEl = document.getElementById('name');
+
+const listenForSubmissions = () => {
+    submissionsRef.onSnapshot((snapshot) => {
+        // Only show all submissions if they have generated a name
+        if (!generatedName) return;
+        // Remove all children
+        submissionsEl.innerHTML = '';
+        snapshot.docs.forEach(submission => {
+            if(!submission.data().id) return
+            let submissionEl = document.createElement('span');
+            submissionEl.classList.add('submission');
+            submissionEl.innerText = `${baseName}${submission.data().id} - ${submission.data().text}`;
+            // removes google's Touch to Search
+            // https://stackoverflow.com/questions/30648401/disable-mobile-chrome-43s-touch-to-search-feature-programmatically
+            submissionEl.setAttribute('role', 'textbox');
+            submissionsEl.appendChild(submissionEl);
+        })
+    });
+}
+
 const setGeneratedNameEl = (name) => {
     textEl.innerHTML = `Congrats! Your new playa name is: <h1><b>${name}</b></h1>`
+    listenForSubmissions();
 };
 let generatedName = window.localStorage.getItem('generatedName');
 if (generatedName) setGeneratedNameEl(generatedName);
-submissionsRef.onSnapshot((snapshot) => {
-    // Only show all submissions if they have generated a name
-    if (!generatedName) return;
-    // Remove all children
-    submissionsEl.innerHTML = '';
-    snapshot.docs.forEach(submission => {
-        let submissionEl = document.createElement('span');
-        submissionEl.classList.add('submission');
-        submissionEl.innerText = `${baseName}${submission.data().id} - ${submission.data().text}`;
-        // removes google's Touch to Search
-        // https://stackoverflow.com/questions/30648401/disable-mobile-chrome-43s-touch-to-search-feature-programmatically
-        submissionEl.setAttribute('role', 'textbox');
-        submissionsEl.appendChild(submissionEl);
-    })
-});
 
 const generateName = async () => {
     if (generatedName) return;
@@ -42,9 +48,11 @@ const generateName = async () => {
     try {
         const docRef = await submissionsRef.add({text: inputEl.value});
         docRef.onSnapshot((doc) => {
-            generatedName = `${baseName}${doc.data().id}`;
-            window.localStorage.setItem('generatedName', generatedName);
-            if (doc.data() && doc.data().id) setGeneratedNameEl(generatedName);
+            if (doc.data() && doc.data().id) {
+                generatedName = `${baseName}${doc.data().id}`;
+                window.localStorage.setItem('generatedName', generatedName);
+                setGeneratedNameEl(generatedName);
+            }
         });
     } catch (error) {
         // TODO: show error to user if this fails
