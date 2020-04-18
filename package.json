@@ -6,7 +6,13 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "deploy": "node util/minify.js && firebase deploy",
-    "watch": "live-server public"
+    "watch": "live-server public",
+    "hooks:pre-push": "node ./hooks/pre-push.js"
+  },
+  "husky": {
+    "hooks": {
+      "pre-push": "npm run hooks:pre-push"
+    }
   },
   "repository": {
     "type": "git",
@@ -19,7 +25,11 @@
   },
   "homepage": "https://github.com/jsonpoindexter/playa-name#readme",
   "dependencies": {
+    "husky": "^4.2.5",
     "minify": "^5.1.1",
     "ncp": "^2.0.0"
+  },
+  "devDependencies": {
+    "shelljs": "^0.8.3"
   }
 }
