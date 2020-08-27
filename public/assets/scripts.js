@@ -6,10 +6,21 @@ const textEl = document.getElementById('name');
 let user = null;
 
 // Hide input form
-const setForVisible = (visible) => {
+const setFormVisible = (visible) => {
     visible ? document.getElementById('form').style.display = 'flex' :
         document.getElementById('form').style.display = 'none'
 }
+
+const setAboutVisible = (visible) => {
+    if(visible) {
+        document.getElementById('about').style.display = 'flex'
+        document.getElementById('main').style.filter = 'blur(30px)'
+    } else {
+        document.getElementById('about').style.display = 'none'
+        document.getElementById('main').style.filter = 'none'
+    }
+}
+
 
 // Handle anonymous firebase auth
 firebase.auth().signInAnonymously().catch(function(error) {
@@ -42,14 +53,17 @@ const listenForSubmissions = () => {
 }
 
 const setGeneratedNameEl = (name) => {
-    setForVisible(false)
+    setFormVisible(false)
     textEl.innerHTML = `Congrats! Your new playa name is: <h1><b>${name}</b></h1>`
     listenForSubmissions();
 };
-
 let generatedName = window.localStorage.getItem('generatedName');
-generatedName ? setGeneratedNameEl(generatedName) : setForVisible(true)
-
+if(generatedName) {
+    setGeneratedNameEl(generatedName)
+} else {
+    setAboutVisible(true)
+    setFormVisible(true)
+}
 const generateName = async () => {
     if (generatedName) return;
     const inputEl = document.getElementById('desc');
@@ -63,7 +77,7 @@ const generateName = async () => {
     // Remove error msgs if present
     inputErrEl.style.display = 'none';
     inputEl.classList.remove('error-border');
-    setForVisible(false)
+    setFormVisible(false)
     textEl.innerHTML = '<h1 class="generating">Generating<span>.</span><span>.</span><span>.</span></h1>';
     // Wait until we have an Anonymous user created
     while(!user) await wait(500)

@@ -8,19 +8,29 @@
         <link href="assets/styles.css" rel="stylesheet">
     </head>
     <body>
-        <header>
-            <h1>Playa Name Generator</h1>
-        </header>
-        <img src="assets/phoenix-main-sprite.png" />
-        <div id="form">
-            <h3>Generate a YOUnique playa name simply by putting in descriptive words below and hitting generate!</h3>
-            <label for="desc"></label>
-            <input type="text" id="desc" name="desc" maxlength="50">
-            <p id="input-error" class="error-text">Please enter some descriptive words!</p>
-            <button onclick="generateName()">Generate</button>
+        <div id="about">
+            <div id="about-text">
+                <h4>Playa Name Generator&trade; works by using advanced AI and Machine Learning algorithms in order to generate a unique playa name based on descriptive words.</h4>
+                <h4>Enter descriptive words that describe what you like about Burning Man.</h4>
+                <h4>The more creative the better!</h4>
+                <button id="about-proceed" onclick="setAboutVisible(false)">PROCEED</button>
+            </div>
         </div>
-        <h3 id="name"></h3>
-        <div id="submissions"></div>
+        <div id="main">
+            <header>
+                <h1>Playa Name Generator</h1>
+                <h4 style="margin-top: 0;">Generate a YOUnique playa name!</h4>
+            </header>
+            <img src="assets/phoenix-main-sprite.png" />
+            <div id="form">
+                <label for="desc"></label>
+                <input type="text" id="desc" name="desc" maxlength="50" placeholder="DESCRIPTIVE WORDS GO HERE">
+                <p id="input-error" class="error-text">Please enter some descriptive words!</p>
+                <button onclick="generateName()">Generate</button>
+            </div>
+            <h3 id="name"></h3>
+            <div id="submissions"></div>
+        </div>
         <script src="https://www.gstatic.com/firebasejs/7.14.0/firebase-app.js"></script>
         <script src="https://www.gstatic.com/firebasejs/7.14.0/firebase-firestore.js"></script>
         <script src="https://www.gstatic.com/firebasejs/7.14.0/firebase-auth.js"></script>
