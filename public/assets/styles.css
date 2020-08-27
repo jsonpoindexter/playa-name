@@ -51,18 +51,19 @@ input {
     border-radius: 5px;
     padding: 10px 5px;
     text-align: center;
-    width: 300px;
+    font-size: 3em;
+    width: 90%;
 }
 button {
-    width: 250px;
-    margin: 20px auto;
-    padding: 5px;
+    margin: 40px auto;
+    padding: 15px 25px;
     border-radius: 5px;
     border: 1px solid #ffffff;
     background: #1B3041;
     color: #ffffff;
     outline: none;
     user-select: none;
+    font-size: 3em;
 }
 button:hover {
     border: 1px solid lightblue;
@@ -118,7 +119,7 @@ img {
 }
 .submission {
     cursor: pointer;
-    font-size: large;
+    font-size: 2em;
     padding: 0.5rem 1rem;
     filter: blur(3px);
     display: inline-block;
