@@ -15,6 +15,7 @@ firebase.auth().onAuthStateChanged((authUser) => {
 
 const wait = ms => new Promise((r, j)=>setTimeout(r, ms))
 
+// Display new firebase entries
 const listenForSubmissions = () => {
     submissionsRef.onSnapshot((snapshot) => {
         // Only show all submissions if they have generated a name
@@ -34,7 +35,11 @@ const listenForSubmissions = () => {
     });
 }
 
+// Hide input form
+const hideForm = () => document.getElementById('form').style.display = 'none';
+
 const setGeneratedNameEl = (name) => {
+    hideForm()
     textEl.innerHTML = `Congrats! Your new playa name is: <h1><b>${name}</b></h1>`
     listenForSubmissions();
 };
@@ -54,7 +59,7 @@ const generateName = async () => {
     // Remove error msgs if present
     inputErrEl.style.display = 'none';
     inputEl.classList.remove('error-border');
-
+    hideForm()
     textEl.innerHTML = '<h1 class="generating">Generating<span>.</span><span>.</span><span>.</span></h1>';
     // Wait until we have an Anonymous user created
     while(!user) await wait(500)

@@ -10,15 +10,15 @@
     <body>
         <header>
             <h1>Playa Name Generator</h1>
-            <h3>Generate a YOUnique playa name simply by putting in descriptive words below and hitting generate!</h3>
         </header>
         <img src="assets/phoenix-main-sprite.png" />
         <div id="form">
+            <h3>Generate a YOUnique playa name simply by putting in descriptive words below and hitting generate!</h3>
             <label for="desc"></label>
             <input type="text" id="desc" name="desc" maxlength="50">
+            <p id="input-error" class="error-text">Please enter some descriptive words!</p>
+            <button onclick="generateName()">Generate</button>
         </div>
-        <p id="input-error" class="error-text">Please enter some descriptive words!</p>
-        <button onclick="generateName()">Generate</button>
         <h3 id="name"></h3>
         <div id="submissions"></div>
         <script src="https://www.gstatic.com/firebasejs/7.14.0/firebase-app.js"></script>
