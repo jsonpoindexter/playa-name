@@ -6,13 +6,12 @@ body {
     justify-content: center;
     background: #1B3041;
     color: #ffffff;
-    -webkit-user-select: none;
 }
 header h1 {
     font-size: 4em;
 }
 #form {
-    display: flex;
+    display: none;
     flex-direction: column;
     justify-content: center;
     align-items: center;

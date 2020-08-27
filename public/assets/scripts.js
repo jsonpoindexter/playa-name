@@ -5,6 +5,12 @@ const baseName = 'SpArkl3P0ny';
 const textEl = document.getElementById('name');
 let user = null;
 
+// Hide input form
+const setForVisible = (visible) => {
+    visible ? document.getElementById('form').style.display = 'flex' :
+        document.getElementById('form').style.display = 'none'
+}
+
 // Handle anonymous firebase auth
 firebase.auth().signInAnonymously().catch(function(error) {
     console.log(error)
@@ -35,16 +41,14 @@ const listenForSubmissions = () => {
     });
 }
 
-// Hide input form
-const hideForm = () => document.getElementById('form').style.display = 'none';
-
 const setGeneratedNameEl = (name) => {
-    hideForm()
+    setForVisible(false)
     textEl.innerHTML = `Congrats! Your new playa name is: <h1><b>${name}</b></h1>`
     listenForSubmissions();
 };
+
 let generatedName = window.localStorage.getItem('generatedName');
-if (generatedName) setGeneratedNameEl(generatedName);
+generatedName ? setGeneratedNameEl(generatedName) : setForVisible(true)
 
 const generateName = async () => {
     if (generatedName) return;
@@ -59,7 +63,7 @@ const generateName = async () => {
     // Remove error msgs if present
     inputErrEl.style.display = 'none';
     inputEl.classList.remove('error-border');
-    hideForm()
+    setForVisible(false)
     textEl.innerHTML = '<h1 class="generating">Generating<span>.</span><span>.</span><span>.</span></h1>';
     // Wait until we have an Anonymous user created
     while(!user) await wait(500)
