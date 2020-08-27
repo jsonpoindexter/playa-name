@@ -21,6 +21,18 @@ const setAboutVisible = (visible) => {
     }
 }
 
+// Display a general error
+const setGeneralError = (visible, error) => {
+    const el = document.getElementById('general-error')
+    if(visible) {
+        el.style.display = 'block'
+        el.innerText = error
+    } else {
+        el.style.display = 'none'
+        el.innerText = ''
+    }
+}
+
 
 // Handle anonymous firebase auth
 firebase.auth().signInAnonymously().catch(function(error) {
@@ -95,7 +107,7 @@ const generateName = async () => {
             }
         });
     } catch (error) {
-        // TODO: show error to user if this fails
         console.error("Error adding document: ", error);
+        setGeneralError("Error adding document: ", error)
     }
 };
