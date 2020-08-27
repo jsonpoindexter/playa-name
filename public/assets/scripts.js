@@ -54,6 +54,8 @@ const listenForSubmissions = () => {
 
 const setGeneratedNameEl = (name) => {
     setFormVisible(false)
+    document.getElementById('thankyou').style.display = 'block'
+    document.getElementById('header').style.display = 'none'
     textEl.innerHTML = `Congrats! Your new playa name is: <h1><b>${name}</b></h1>`
     listenForSubmissions();
 };
@@ -63,6 +65,8 @@ if(generatedName) {
 } else {
     setAboutVisible(true)
     setFormVisible(true)
+    document.getElementById('header').style.display = 'block'
+
 }
 const generateName = async () => {
     if (generatedName) return;
