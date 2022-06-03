@@ -25,6 +25,7 @@
   },
   "homepage": "https://github.com/jsonpoindexter/playa-name#readme",
   "dependencies": {
+    "firebase-functions": "^3.21.2",
     "husky": "^4.2.5",
     "minify": "^5.1.1",
     "ncp": "^2.0.0"

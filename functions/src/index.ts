@@ -6,6 +6,8 @@ admin.initializeApp({
     credential: admin.credential.applicationDefault()
 });
 
+
+
 // Assign an `id` to each submission based on a global counter that is increased (stored in submissionCount)
 export const assignCount = functions.firestore.document('submissions/{submissionId}')
     .onCreate(async (snapshot, context) => {

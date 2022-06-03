@@ -7,14 +7,14 @@ service cloud.firestore {
     match /submissions/{submission} {
       allow read: if true;
       // Allow CREATE if doc contains 'text' key and has a value
-      allow create:
-      	if (
-          incomingData().keys().hasOnly(['text', 'userId']) &&
-          incomingData().text.size() > 0 &&
-          incomingData().text.size() <= 50 &&
-          // Deny create if text contains URL or IP Address
-          !incomingData().text.matches("[-a-zA-Z0-9@:%._\\+~#=]{1,256}\\.[a-zA-Z0-9()]{1,6}\\b([-a-zA-Z0-9()@:%_\\+.~#?&//=]*)")
-        )
+//      allow create:
+//      	if (
+//          incomingData().keys().hasOnly(['text', 'userId']) &&
+//          incomingData().text.size() > 0 &&
+//          incomingData().text.size() <= 50 &&
+//          // Deny create if text contains URL or IP Address
+//          !incomingData().text.matches("[-a-zA-Z0-9@:%._\\+~#=]{1,256}\\.[a-zA-Z0-9()]{1,6}\\b([-a-zA-Z0-9()@:%_\\+.~#?&//=]*)")
+//        )
       }
   }
 }
